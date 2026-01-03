@@ -1,0 +1,449 @@
+<?php
+    include_once('config/db.php'); 
+?>
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>ASEE · Asesoría de Servicios Educativos y Empresariales</title>
+  <meta name="description" content="ASEE: Formamos personas, ayudamos a mejorar la educación y fortalecemos negocios. Distribuidor autorizado de Educare Innovación, facilitador certificado de LEGO® Serious Play, workshops para empresas."/>
+  <link rel="icon" type="image/png" href="assets/img/logo-asee.png" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            asee: {50:'#eef2ff',100:'#e0e7ff',200:'#c7d2fe',300:'#a5b4fc',400:'#818cf8',500:'#6366f1',600:'#4f46e5',700:'#4338ca',800:'#3730a3',900:'#312e81'},
+            educare: {500:'#0ea5e9'},
+            lati: {500:'#22c55e'}
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    html { scroll-behavior: smooth; }
+    .section-accent{ background: linear-gradient(90deg, rgba(99,102,241,.1), rgba(14,165,233,.08), rgba(34,197,94,.08)); }
+    .hero-mark{
+      position:absolute; left:2%; top:8%;
+      width:min(22vw,260px);
+      opacity:.22;
+      filter:saturate(1) brightness(1.1) contrast(1.1);
+      mix-blend-mode:lighten;
+      mask-image:radial-gradient(ellipse at 60% 50%, rgba(0,0,0,1) 60%, rgba(0,0,0,0) 100%);
+      -webkit-mask-image:radial-gradient(ellipse at 60% 50%, rgba(0,0,0,1) 60%, rgba(0,0,0,0) 100%);
+    }
+    .pill{border:1px solid rgba(255,255,255,.25)}
+  </style>
+</head>
+<body class="text-slate-800">
+  <header class="sticky top-0 z-40 bg-white/90 backdrop-blur border-b border-slate-100">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="h-16 flex items-center justify-between">
+        <div class="flex items-center gap-3">
+          <img src="assets/img/logo-asee.png" alt="ASEE" class="h-14 md:h-16 w-auto" />
+        </div>
+        <nav class="hidden md:flex items-center gap-8 text-sm font-medium">
+          <a href="#inicio" class="hover:text-asee-600 border-b-2 border-transparent hover:border-asee-600 pb-1">Inicio</a>
+          <a href="#servicios" class="hover:text-educare-500 border-b-2 border-transparent hover:border-educare-500 pb-1">Servicios</a>
+          <a href="#contacto" class="hover:text-lati-500 border-b-2 border-transparent hover:border-lati-500 pb-1">Contacto</a>
+        </nav>
+        <div class="md:hidden"><button id="menuBtn" class="p-2 rounded-md border border-slate-200">☰</button></div>
+      </div>
+      <div id="mobileMenu" class="md:hidden hidden pb-4">
+        <nav class="flex flex-col gap-2 text-sm">
+          <a href="#inicio" class="py-2 border-b">Inicio</a>
+          <a href="#servicios" class="py-2 border-b">Servicios</a>
+          <a href="#contacto" class="py-2">Contacto</a>
+        </nav>
+      </div>
+    </div>
+  </header>
+
+  <section id="inicio" class="relative overflow-hidden" style="background-image:url('assets/img/hero_3.jpg'); background-size:cover; background-position:center;">
+    <img src="assets/img/logo-asee-mark.png" alt="ASEE marca" class="hero-mark" />
+    <div class="absolute inset-0 bg-slate-900/55"></div>
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 lg:py-32 relative z-10">
+      <div class="max-w-3xl">
+        <span class="inline-flex items-center gap-2 rounded-full px-3 py-1 text-xs font-semibold bg-white/10 text-white pill">ASEE · Socios fundadores de LATI</span>
+        <h1 class="mt-5 text-4xl md:text-5xl font-extrabold tracking-tight text-white">
+          Tu socio estratégico en <span class="text-asee-200">educación</span>, <span class="text-educare-500">innovación</span> y <span class="text-lati-500">desarrollo empresarial</span>.
+        </h1>
+        <p class="mt-5 text-lg text-slate-100/90 max-w-2xl">Formamos personas, ayudamos a mejorar la educación y fortalecemos negocios.</p>
+        <div class="mt-8 flex flex-wrap gap-3">
+          <a href="#servicios" class="inline-flex items-center justify-center px-5 py-3 rounded-xl bg-asee-600 hover:bg-asee-700 text-white font-semibold shadow">Ver servicios</a>
+          <a href="#contacto" class="inline-flex items-center justify-center px-5 py-3 rounded-xl border border-white/30 text-white hover:bg-white/10 shadow-sm">Contáctanos</a>
+        </div>
+        <div class="mt-6 flex items-center gap-4 text-xs text-white/80">
+          <img src="assets/img/logo-educare.png" alt="Educare Innovación" class="h-8 w-auto" />
+          <img src="assets/img/logo-lsp.png" alt="LEGO® Serious Play Certified Facilitator" class="h-8 w-auto" />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-16 bg-white">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid md:grid-cols-2 gap-10 items-start">
+        <div>
+          <div class="inline-block px-3 py-1 rounded-full text-xs font-semibold section-accent mb-3">Quiénes somos</div>
+          <h2 class="text-2xl md:text-3xl font-bold text-slate-900">ASEE · Asesoría de Servicios Educativos y Empresariales</h2>
+          <p class="mt-4 text-slate-600">Empresa tabasqueña dedicada a fortalecer instituciones educativas y negocios con soluciones que combinan innovación, formación y acompañamiento estratégico.</p>
+          <p class="mt-4 text-slate-600"><strong>Socios fundadores de LATI</strong> (Laboratorio de Arte, Tecnología e Innovación).</p>
+        </div>
+        <div class="bg-slate-50 border border-slate-200 rounded-2xl p-6">
+          <div>
+            <h3 class="text-lg font-semibold text-slate-900">Misión</h3>
+            <p class="mt-2 text-slate-600">Acompañar a colegios y empresas en su crecimiento mediante asesorías, capacitaciones y herramientas prácticas que mejoren su desempeño operativo, académico y humano.</p>
+          </div>
+          <div class="mt-6">
+            <h3 class="text-lg font-semibold text-slate-900">Visión</h3>
+            <p class="mt-2 text-slate-600">Ser líderes en el desarrollo de modelos de acompañamiento educativo y empresarial que transformen comunidades a través del conocimiento y la mejora continua.</p>
+          </div>
+          <div class="mt-6">
+            <h3 class="text-lg font-semibold text-slate-900">Eslogan</h3>
+            <p class="mt-2 text-slate-600">Formamos personas, ayudamos a mejorar la educación y fortalecemos negocios.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="servicios" class="py-12 bg-white">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <h2 class="text-3xl font-extrabold text-slate-900 mb-2">Nuestros Servicios</h2>
+      <p class="text-slate-500">Explora nuestras áreas de especialización.</p>
+    </div>
+  </section>
+
+  <section class="py-10 bg-slate-50">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+        <a href="#lsp" class="group rounded-2xl border border-slate-200 bg-white p-5 shadow-sm hover:shadow-md transition">
+          <div class="flex flex-col items-center text-center gap-3">
+            <img src="assets/img/logo-lsp.png" alt="LEGO® Serious Play" class="h-12 w-auto" />
+            <div>
+              <p class="text-sm text-slate-500">LEGO® Serious Play</p>
+              <p class="text-base font-semibold text-slate-900">Facilitador certificado</p>
+            </div>
+          </div>
+        </a>
+        <a href="#educare" class="group rounded-2xl border border-slate-200 bg-white p-5 shadow-sm hover:shadow-md transition">
+          <div class="flex flex-col items-center text-center gap-3">
+            <img src="assets/img/logo-educare.png" alt="Educare Innovación" class="h-10 w-auto" />
+            <div>
+              <p class="text-sm text-slate-500">Educare Innovación</p>
+              <p class="text-base font-semibold text-slate-900">Distribuidor autorizado</p>
+            </div>
+          </div>
+        </a>
+        <a href="#workshops" class="group rounded-2xl border border-slate-200 bg-white p-5 shadow-sm hover:shadow-md transition">
+          <div class="flex flex-col items-center text-center gap-3">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="h-10 w-10 text-asee-600"><path d="M10 2a2 2 0 00-2 2v2H6a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V8a2 2 0 00-2-2h-2V4a2 2 0 00-2-2h-4zm4 4V4h-4v2h4z"/></svg>
+            <div>
+              <p class="text-sm text-slate-500">Empresas</p>
+              <p class="text-base font-semibold text-slate-900">Workshops para empresas</p>
+            </div>
+          </div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-16 bg-slate-50">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <article id="educare" class="bg-white border border-slate-200 rounded-2xl p-6 shadow-sm">
+        <div class="flex items-center gap-4">
+          <div class="w-36 h-16 rounded-lg bg-slate-50 border border-slate-200 flex items-center justify-center overflow-hidden">
+            <img src="assets/img/logo-educare.png" alt="Educare" class="max-h-full max-w-full object-contain p-2" />
+          </div>
+          <div>
+            <h3 class="text-xl font-semibold text-slate-900">Distribuidor autorizado de Educare Innovación</h3>
+            <p class="text-slate-600 mt-1">Contenidos y programas educativos que integran tecnología, creatividad y aprendizaje significativo para escuelas y familias.</p>
+          </div>
+        </div>
+
+        <div class="mt-6 space-y-6">
+          <div class="bg-slate-50 rounded-xl p-4 border border-slate-200">
+            <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+              <div class="flex items-center gap-3">
+                <div class="w-36 h-16 rounded-lg bg-white border border-slate-200 flex items-center justify-center overflow-hidden">
+                  <img src="assets/img/logo-pie.png" alt="Informática Educativa" class="max-h-full max-w-full object-contain p-2" />
+                </div>
+                <div><h4 class="font-semibold">Programa de Informática Educativa</h4></div>
+              </div>
+              <a class="inline-flex items-center justify-center px-4 py-2 rounded-lg bg-educare-500 text-white font-medium hover:opacity-90" target="_blank" rel="noopener" href="https://grupoeducare.com/fdigital22/pie_basico/">Ver folleto vivo</a>
+            </div>
+            <p class="mt-3 text-sm text-slate-600">Competencias digitales y pensamiento computacional con enfoque progresivo.</p>
+          </div>
+
+          <div class="bg-slate-50 rounded-xl p-4 border border-slate-200">
+            <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+              <div class="flex items-center gap-3">
+                <div class="w-36 h-16 rounded-lg bg-white border border-slate-200 flex items-center justify-center overflow-hidden">
+                  <img src="assets/img/logo-robotopia.png" alt="Robotopia Maker" class="max-h-full max-w-full object-contain p-2" />
+                </div>
+                <div><h4 class="font-semibold">Robotopia Maker</h4></div>
+              </div>
+              <a class="inline-flex items-center justify-center px-4 py-2 rounded-lg bg-educare-500 text-white font-medium hover:opacity-90" target="_blank" rel="noopener" href="https://grupoeducare.com/fdigital22/rbt_maker/">Ver folleto vivo</a>
+            </div>
+            <p class="mt-3 text-sm text-slate-600">Robótica y fabricación digital para aprender construyendo.</p>
+          </div>
+
+          <div class="bg-slate-50 rounded-xl p-4 border border-slate-200">
+            <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+              <div class="flex items-center gap-3">
+                <div class="w-36 h-16 rounded-lg bg-white border border-slate-200 flex items-center justify-center overflow-hidden">
+                  <img src="assets/img/logo-emprendimiento-finanzas.png" alt="Emprendimiento y Finanzas" class="max-h-full max-w-full object-contain p-2" />
+                </div>
+                <div><h4 class="font-semibold">Emprendimiento y Finanzas</h4></div>
+              </div>
+              <a class="inline-flex items-center justify-center px-4 py-2 rounded-lg bg-educare-500 text-white font-medium hover:opacity-90" target="_blank" rel="noopener" href="https://grupoeducare.com/fdigital22/pef/">Ver folleto vivo</a>
+            </div>
+            <p class="mt-3 text-sm text-slate-600">Educación financiera temprana y mentalidad emprendedora.</p>
+          </div>
+
+          <div class="bg-slate-50 rounded-xl p-4 border border-slate-200">
+            <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+              <div class="flex items-center gap-3">
+                <div class="w-36 h-16 rounded-lg bg-white border border-slate-200 flex items-center justify-center overflow-hidden">
+                  <img src="assets/img/logo-intellectus.png" alt="Intellectus" class="max-h-full max-w-full object-contain p-2" />
+                </div>
+                <div><h4 class="font-semibold">Intellectus</h4></div>
+              </div>
+              <a class="inline-flex items-center justify-center px-4 py-2 rounded-lg bg-educare-500 text-white font-medium hover:opacity-90" target="_blank" rel="noopener" href="https://grupoeducare.com/fdigital22/intellectus/">Ver folleto vivo</a>
+            </div>
+            <p class="mt-3 text-sm text-slate-600">Atención, memoria, razonamiento y solución de problemas.</p>
+          </div>
+
+          <div class="bg-slate-50 rounded-xl p-4 border border-slate-200">
+            <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+              <div class="flex items-center gap-3">
+                <div class="w-36 h-16 rounded-lg bg-white border border-slate-200 flex items-center justify-center overflow-hidden">
+                  <img src="assets/img/logo-genios.png" alt="Genios" class="max-h-full max-w-full object-contain p-2" />
+                </div>
+                <div><h4 class="font-semibold">Genios</h4></div>
+              </div>
+              <a class="inline-flex items-center justify-center px-4 py-2 rounded-lg bg-educare-500 text-white font-medium hover:opacity-90" target="_blank" rel="noopener" href="https://grupoeducare.com/fdigital22/genios/">Ver folleto vivo</a>
+            </div>
+            <p class="mt-3 text-sm text-slate-600">Aprendizaje por proyectos con creatividad y pensamiento crítico.</p>
+          </div>
+
+          <div class="bg-slate-50 rounded-xl p-4 border border-slate-200">
+            <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+              <div class="flex items-center gap-3">
+                <div class="w-36 h-16 rounded-lg bg-white border border-slate-200 flex items-center justify-center overflow-hidden">
+                  <img src="assets/img/logo-prototyp.png" alt="Prototyp" class="max-h-full max-w-full object-contain p-2" />
+                </div>
+                <div><h4 class="font-semibold">Prototyp</h4></div>
+              </div>
+              <a class="inline-flex items-center justify-center px-4 py-2 rounded-lg bg-educare-500 text-white font-medium hover:opacity-90" target="_blank" rel="noopener" href="https://grupoeducare.com/fdigital22/prototyp/">Ver folleto vivo</a>
+            </div>
+            <p class="mt-3 text-sm text-slate-600">Ingeniería creativa y validación de prototipos.</p>
+          </div>
+
+          <div class="bg-slate-50 rounded-xl p-4 border border-slate-200">
+            <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+              <div class="flex items-center gap-3">
+                <div class="w-36 h-16 rounded-lg bg-white border border-slate-200 flex items-center justify-center overflow-hidden">
+                  <img src="assets/img/logo-musa.png" alt="Musa eLearner" class="max-h-full max-w-full object-contain p-2" />
+                </div>
+                <div><h4 class="font-semibold">Musa (eLearner)</h4></div>
+              </div>
+              <a class="inline-flex items-center justify-center px-4 py-2 rounded-lg bg-educare-500 text-white font-medium hover:opacity-90" target="_blank" rel="noopener" href="https://grupoeducare.com/fdigital22/elearner/">Ver folleto vivo</a>
+            </div>
+            <p class="mt-3 text-sm text-slate-600">Plataforma y contenidos de aprendizaje digital.</p>
+          </div>
+
+          <div class="bg-slate-50 rounded-xl p-4 border border-slate-200">
+            <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+              <div class="flex items-center gap-3">
+                <div class="w-36 h-16 rounded-lg bg-white border border-slate-200 flex items-center justify-center overflow-hidden">
+                  <img src="assets/img/logo-pathbooks.png" alt="Pathbooks" class="max-h-full max-w-full object-contain p-2" />
+                </div>
+                <div><h4 class="font-semibold">Pathbooks</h4></div>
+              </div>
+              <a class="inline-flex items-center justify-center px-4 py-2 rounded-lg bg-educare-500 text-white font-medium hover:opacity-90" target="_blank" rel="noopener" href="https://www.pathbooks.app/">Ver sitio</a>
+            </div>
+            <p class="mt-3 text-sm text-slate-600">Lecturas interactivas para fomentar el hábito lector.</p>
+          </div>
+
+          <div class="bg-slate-50 rounded-xl p-4 border border-slate-200">
+            <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+              <div class="flex items-center gap-3">
+                <div class="w-36 h-16 rounded-lg bg-white border border-slate-200 flex items-center justify-center overflow-hidden">
+                  <img src="assets/img/logo-self-english.png" alt="Self-English" class="max-h-full max-w-full object-contain p-2" />
+                </div>
+                <div><h4 class="font-semibold">Self-English</h4></div>
+              </div>
+              <div class="opacity-80 text-sm text-slate-500">(Próximamente)</div>
+            </div>
+            <p class="mt-3 text-sm text-slate-600">Inglés funcional y autodidacta con metas por niveles.</p>
+          </div>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <section class="py-16 bg-white">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <article id="lsp" class="bg-white border border-slate-200 rounded-2xl p-6 shadow-sm">
+        <div class="flex items-center gap-4">
+          <div class="w-36 h-16 rounded-lg bg-slate-50 border border-slate-200 flex items-center justify-center overflow-hidden">
+            <img src="assets/img/logo-lsp.png" alt="LSP" class="max-h-full max-w-full object-contain p-2" />
+          </div>
+          <div>
+            <h3 class="text-xl font-semibold text-slate-900">Facilitador certificado de LEGO® Serious Play (LSP)</h3>
+            <p class="text-slate-600 mt-1">Workshops vocacionales para jóvenes que descubren talentos, clarifican metas y desarrollan habilidades para la vida.</p>
+          </div>
+        </div>
+        <ul class="mt-4 grid sm:grid-cols-2 gap-3 text-sm text-slate-700 list-disc list-inside">
+          <li>Orientación vocacional basada en identidad y propósito.</li>
+          <li>Habilidades socioemocionales: autoconfianza, comunicación y colaboración.</li>
+          <li>Trabajo en equipo y liderazgo emergente.</li>
+          <li>Diseño de ruta profesional (portafolio y plan de acción).</li>
+        </ul>
+        <div class="mt-4">
+          <a href="https://seriousplay.community/mexico/metodologia/" target="_blank" rel="noopener" class="inline-flex items-center justify-center px-4 py-2 rounded-lg bg-asee-600 text-white font-medium hover:bg-asee-700">Conoce la metodología</a>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <section class="py-16 bg-slate-50">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <article id="workshops" class="bg-white border border-slate-200 rounded-2xl p-6 shadow-sm">
+        <div class="flex items-center gap-4">
+          <div class="w-36 h-16 rounded-lg bg-slate-50 border border-slate-200 flex items-center justify-center overflow-hidden">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="h-10 w-10 text-asee-600"><path d="M10 2a2 2 0 00-2 2v2H6a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V8a2 2 0 00-2-2h-2V4a2 2 0 00-2-2h-4zm4 4V4h-4v2h4z"/></svg>
+          </div>
+          <div>
+            <h3 class="text-xl font-semibold text-slate-900">Workshops para empresas</h3>
+            <p class="text-slate-600 mt-1">Programas prácticos para fortalecer equipos, elevar productividad y acelerar resultados comerciales.</p>
+          </div>
+        </div>
+        <div class="mt-4 grid md:grid-cols-3 gap-4">
+          <div class="bg-slate-50 border border-slate-200 rounded-xl p-4">
+            <h4 class="font-semibold">Equipos de alto rendimiento</h4>
+            <p class="mt-1 text-sm text-slate-600">Cohesión, confianza, objetivos claros y rituales de mejora continua.</p>
+          </div>
+          <div class="bg-slate-50 border border-slate-200 rounded-xl p-4">
+            <h4 class="font-semibold">Gestión de ventas</h4>
+            <p class="mt-1 text-sm text-slate-600">Proceso comercial, prospección efectiva y seguimiento con indicadores.</p>
+          </div>
+          <div class="bg-slate-50 border border-slate-200 rounded-xl p-4">
+            <h4 class="font-semibold">Liderazgo transformacional</h4>
+            <p class="mt-1 text-sm text-slate-600">Comunicación, toma de decisiones y cultura de responsabilidad.</p>
+          </div>
+        </div>
+        <div class="mt-4">
+          <a href="https://entropiacreatividad.com/para-empresas/" target="_blank" rel="noopener" class="inline-flex items-center justify-center px-4 py-2 rounded-lg border border-slate-300 text-slate-700 hover:bg-white mb-4">Ver inspiración</a>
+        </div>
+        <?php 
+            $query = 'SELECT * FROM cursos';
+            foreach ($conn->query($query) as $curso): ?>
+            
+            <div class="bg-slate-50 rounded-xl p-4 border border-slate-200 hover:shadow-md transition">
+
+                <!-- Encabezado -->
+                <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+
+                <!-- Imagen + nombre -->
+                <div class="flex items-center gap-4">
+                    <div class="w-36 h-20 rounded-lg bg-white border border-slate-200 flex items-center justify-center overflow-hidden">
+                    <img 
+                        src="<?= htmlspecialchars($curso['imagen']) ?>" 
+                        alt="<?= htmlspecialchars($curso['nombre']) ?>" 
+                        class="max-h-full max-w-full object-contain p-2"
+                    />
+                    </div>
+
+                    <div>
+                    <h4 class="text-lg font-semibold text-slate-800">
+                        <?= htmlspecialchars($curso['nombre']) ?>
+                    </h4>
+                    <p class="text-sm text-slate-500">
+                        Duración: <?= htmlspecialchars($curso['duracion']) ?> días
+                    </p>
+                    </div>
+                </div>
+
+                <!-- Fecha de inicio -->
+                <div class="inline-flex items-center justify-center px-4 py-2 rounded-lg bg-educare-500 text-white text-sm font-medium whitespace-nowrap">
+                    Inicia: <?= htmlspecialchars($curso['fechainicio']) ?>
+                </div>
+
+                </div>
+
+                <!-- Descripción -->
+                <p class="mt-4 text-sm text-slate-600 leading-relaxed">
+                <?= nl2br(htmlspecialchars($curso['descripcion'])) ?>
+                </p>
+
+            </div>
+
+            <?php endforeach; ?>
+      </article>
+        
+    </div>
+  </section>
+
+  <section id="contacto" class="py-16 bg-white">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid md:grid-cols-2 gap-10 items-start">
+        <div>
+          <h2 class="text-2xl md:text-3xl font-bold text-slate-900">Ubicación y contacto</h2>
+          <p class="mt-4 text-slate-600">📍 Instalaciones de LATI, Plaza Deportiva, Villahermosa, Tabasco.</p>
+          <img src="assets/img/logo-lati.png" alt="LATI" class="h-12 w-auto mt-3" />
+          <p class="mt-3 text-slate-600">📞 Teléfono y WhatsApp: <a class="text-asee-600 font-medium hover:underline" href="https://wa.me/529931126644">993 112 6644</a></p>
+          <p class="mt-1 text-slate-400 text-sm">(Redes sociales próximamente)</p>
+        </div>
+        <div class="bg-slate-50 border border-slate-200 rounded-2xl p-6">
+          <h3 class="text-lg font-semibold text-slate-900">Escríbenos</h3>
+          <p class="mt-2 text-slate-600 text-sm">Usa el botón de WhatsApp para una atención inmediata o envíanos un mensaje por correo cuando esté disponible.</p>
+          <div class="mt-4 flex items-center gap-3">
+            <a href="https://wa.me/529931126644" class="inline-flex items-center justify-center px-5 py-3 rounded-xl bg-lati-500 hover:opacity-90 text-white font-semibold shadow">Abrir WhatsApp</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="py-10 bg-slate-900 text-slate-300">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
+        <div class="space-y-3">
+          <div class="flex items-center gap-3">
+            <img src="assets/img/logo-asee.png" alt="ASEE" class="h-10 w-auto" />
+            <img src="assets/img/logo-educare.png" alt="Educare Innovación" class="h-10 w-auto" />
+            <img src="assets/img/logo-lati.png" alt="LATI" class="h-10 w-auto" />
+          </div>
+          <p class="text-sm">ASEE © 2025 · Todos los derechos reservados.</p>
+        </div>
+        <nav class="text-sm">
+          <a href="#inicio" class="hover:underline text-asee-200">Inicio</a>
+          <span class="mx-2">·</span>
+          <a href="#servicios" class="hover:underline text-educare-500">Servicios</a>
+          <span class="mx-2">·</span>
+          <a href="#contacto" class="hover:underline text-lati-500">Contacto</a>
+        </nav>
+      </div>
+    </div>
+  </footer>
+
+  <a href="https://wa.me/529931126644" class="fixed bottom-5 right-5 z-50 inline-flex items-center justify-center w-14 h-14 rounded-full shadow-xl bg-green-500 hover:brightness-110" aria-label="WhatsApp">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-7 h-7 text-white">
+      <path d="M20.52 3.48A11.93 11.93 0 0012.02 0C5.39 0 .01 5.38.01 12c0 2.11.55 4.17 1.6 5.99L0 24l6.18-1.6A11.96 11.96 0 0012.02 24c6.63 0 12.01-5.38 12.01-12 0-3.21-1.25-6.23-3.51-8.52zM12.02 22c-1.87 0-3.72-.5-5.34-1.44l-.38-.22-3.46.9.92-3.37-.25-.39A9.94 9.94 0 012.01 12C2.01 6.49 6.5 2 12.02 2c2.66 0 5.16 1.04 7.03 2.91A9.9 9.9 0 0122.02 12c0 5.51-4.49 10-10 10zm5.64-7.66c-.31-.16-1.86-.92-2.15-1.03-.29-.11-.5-.16-.71.16-.21.32-.82 1.02-1.01 1.23-.19.21-.37.24-.68.08-.31-.16-1.31-.48-2.5-1.53-.92-.79-1.54-1.77-1.73-2.07-.19-.32-.02-.48.14-.64.14-.14.31-.37.47-.56.16-.19.21-.32.31-.53.1-.21.05-.39-.02-.55-.16-.16-.71-1.69-.97-2.29-.25-.6-.51-.52-.71-.53l-.61-.01c-.21 0-.55.08-.84.39-.29.32-1.1 1.07-1.1 2.62 0 1.55 1.13 3.05 1.29 3.26.16.21 2.22 3.39 5.39 4.75.75.32 1.34.51 1.8.65.76.24 1.45.2 2 .12.61-.09 1.86-.76 2.12-1.49.26-.73.26-1.35.18-1.49-.08-.14-.29-.22-.6-.38z"/>
+    </svg>
+  </a>
+
+  <script>
+    const menuBtn = document.getElementById('menuBtn');
+    const mobileMenu = document.getElementById('mobileMenu');
+    if (menuBtn) menuBtn.addEventListener('click', () => mobileMenu.classList.toggle('hidden'));
+  </script>
+</body>
+</html>
