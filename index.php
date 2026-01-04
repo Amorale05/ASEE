@@ -357,7 +357,7 @@
                     <img 
                         src="<?= htmlspecialchars($curso['imagen']) ?>" 
                         alt="<?= htmlspecialchars($curso['nombre']) ?>" 
-                        class="max-h-full max-w-full object-contain p-2"
+                        class="w-full h-full object-cover"
                     />
                     </div>
 
